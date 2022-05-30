@@ -84,7 +84,7 @@ cursor.execute(sql, val)
 
 db.commit()
 
-print("{} data added".format(cursor.rowcount))
+print(f"{cursor.rowcount} data added")
 
 
 # ### Insert Many Data
@@ -115,7 +115,7 @@ for val in values:
 
 db.commit()
 
-print("{} data added".format(cursor.rowcount))
+print(f"{cursor.rowcount} data added")
 
 
 # ### Select 
@@ -186,7 +186,7 @@ cursor.execute(sql, val)
 
 db.commit()
 
-print("{} data deleted".format(cursor.rowcount))
+print(f"{cursor.rowcount} data deleted")
 
 
 # ### Update Data
@@ -210,7 +210,7 @@ cursor.execute(sql, val)
 
 db.commit()
 
-print("{} data changed".format(cursor.rowcount))
+print(f"{cursor.rowcount} data changed")
 
 
 # ### curds_app
@@ -230,14 +230,14 @@ db = mysql.connector.connect(
 
 
 def insert_data(db):
-  name = input("Enter Name: ")
-  address = input("Enter Address: ")
-  val = (name, address)
-  cursor = db.cursor()
-  sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
-  cursor.execute(sql, val)
-  db.commit()
-  print("{} data Inserted".format(cursor.rowcount))
+    name = input("Enter Name: ")
+    address = input("Enter Address: ")
+    val = (name, address)
+    cursor = db.cursor()
+    sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
+    cursor.execute(sql, val)
+    db.commit()
+    print(f"{cursor.rowcount} data Inserted")
 
 
 def show_data(db):
@@ -254,43 +254,43 @@ def show_data(db):
 
 
 def update_data(db):
-  cursor = db.cursor()
-  show_data(db)
-  customer_id = input("Choose id customer> ")
-  name = input("New Name: ")
-  address = input("New Address: ")
+    cursor = db.cursor()
+    show_data(db)
+    customer_id = input("Choose id customer> ")
+    name = input("New Name: ")
+    address = input("New Address: ")
 
-  sql = "UPDATE customers SET name=%s, address=%s WHERE customer_id=%s"
-  val = (name, address, customer_id)
-  cursor.execute(sql, val)
-  db.commit()
-  print("{} data successfully changed".format(cursor.rowcount))
+    sql = "UPDATE customers SET name=%s, address=%s WHERE customer_id=%s"
+    val = (name, address, customer_id)
+    cursor.execute(sql, val)
+    db.commit()
+    print(f"{cursor.rowcount} data successfully changed")
 
 
 def delete_data(db):
-  cursor = db.cursor()
-  show_data(db)
-  customer_id = input("Choose id customer> ")
-  sql = "DELETE FROM customers WHERE customer_id=%s"
-  val = (customer_id,)
-  cursor.execute(sql, val)
-  db.commit()
-  print("{} data successfully deleted".format(cursor.rowcount))
+    cursor = db.cursor()
+    show_data(db)
+    customer_id = input("Choose id customer> ")
+    sql = "DELETE FROM customers WHERE customer_id=%s"
+    val = (customer_id,)
+    cursor.execute(sql, val)
+    db.commit()
+    print(f"{cursor.rowcount} data successfully deleted")
 
 
 def search_data(db):
-  cursor = db.cursor()
-  keyword = input("Keyword: ")
-  sql = "SELECT * FROM customers WHERE name LIKE %s OR address LIKE %s"
-  val = ("%{}%".format(keyword), "%{}%".format(keyword))
-  cursor.execute(sql, val)
-  results = cursor.fetchall()
-  
-  if cursor.rowcount < 0:
-    print("There is not any data")
-  else:
-    for data in results:
-      print(data)
+    cursor = db.cursor()
+    keyword = input("Keyword: ")
+    sql = "SELECT * FROM customers WHERE name LIKE %s OR address LIKE %s"
+    val = f"%{keyword}%", f"%{keyword}%"
+    cursor.execute(sql, val)
+    results = cursor.fetchall()
+
+    if cursor.rowcount < 0:
+      print("There is not any data")
+    else:
+      for data in results:
+        print(data)
 
 
 def show_menu(db):

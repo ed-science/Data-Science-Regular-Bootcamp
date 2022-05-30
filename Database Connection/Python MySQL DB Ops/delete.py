@@ -14,4 +14,4 @@ cursor.execute(sql, val)
 
 db.commit()
 
-print("{} data deleted".format(cursor.rowcount))
+print(f"{cursor.rowcount} data deleted")

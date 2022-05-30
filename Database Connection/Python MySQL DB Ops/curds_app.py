@@ -17,7 +17,7 @@ def insert_data(db):
   sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
   cursor.execute(sql, val)
   db.commit()
-  print("{} data Inserted".format(cursor.rowcount))
+  print(f"{cursor.rowcount} data Inserted")
 
 
 def show_data(db):
@@ -44,7 +44,7 @@ def update_data(db):
   val = (name, address, customer_id)
   cursor.execute(sql, val)
   db.commit()
-  print("{} data successfully changed".format(cursor.rowcount))
+  print(f"{cursor.rowcount} data successfully changed")
 
 
 def delete_data(db):
@@ -55,17 +55,17 @@ def delete_data(db):
   val = (customer_id,)
   cursor.execute(sql, val)
   db.commit()
-  print("{} data successfully deleted".format(cursor.rowcount))
+  print(f"{cursor.rowcount} data successfully deleted")
 
 
 def search_data(db):
   cursor = db.cursor()
   keyword = input("Keyword: ")
   sql = "SELECT * FROM customers WHERE name LIKE %s OR address LIKE %s"
-  val = ("%{}%".format(keyword), "%{}%".format(keyword))
+  val = f"%{keyword}%", f"%{keyword}%"
   cursor.execute(sql, val)
   results = cursor.fetchall()
-  
+
   if cursor.rowcount < 0:
     print("There is not any data")
   else:
