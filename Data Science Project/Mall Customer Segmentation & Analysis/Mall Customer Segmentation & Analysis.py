@@ -187,10 +187,7 @@ sns.heatmap(df.corr(), annot=True)
 
 def impute_age(cols):
     spend=cols
-    if spend > 55:
-         return 1
-    else:
-         return 0
+    return 1 if spend > 55 else 0
 df['Spending Score (1-100)'] = df['Spending Score (1-100)'].apply(impute_age)
 df.head(5)
     

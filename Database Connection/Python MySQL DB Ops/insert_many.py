@@ -21,4 +21,4 @@ for val in values:
 
 db.commit()
 
-print("{} data added".format(cursor.rowcount))
+print(f"{cursor.rowcount} data added")

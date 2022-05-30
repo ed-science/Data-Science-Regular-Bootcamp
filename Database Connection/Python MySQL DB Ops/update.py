@@ -14,4 +14,4 @@ cursor.execute(sql, val)
 
 db.commit()
 
-print("{} data changed".format(cursor.rowcount))
+print(f"{cursor.rowcount} data changed")
